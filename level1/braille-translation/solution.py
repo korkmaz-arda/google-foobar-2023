@@ -26,5 +26,5 @@ def solution(s):
             out += "000001"
         out += braille_encodings[c.lower()]
 
-    # Complexity is O(n+m+k) where m is 'text' and k is 'code'
+    # Complexity is O(n+m+k) where m represents 'text' and k represents 'code'
     return out
