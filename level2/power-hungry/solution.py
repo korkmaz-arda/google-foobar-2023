@@ -19,7 +19,7 @@ def solution(xs):
         elif len(neg) == 1:
             return str(neg[-1])            
 
-    # Ensure the negative numbers are in doubles
+    # Ensure negative numbers are in doubles
     if len(neg) % 2 == 1:
         # If not, remove the number with the lowest abs value
         neg.remove(max(neg))
