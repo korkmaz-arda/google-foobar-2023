@@ -2,7 +2,7 @@ import numpy as np
 from itertools import product
 
 
-def axis_movement(start, end, interval, max_dist):
+def get_axis_moves(start, end, interval, max_dist):
     moves = [end - start]
     
     for lap in range(1, max_dist//interval+2):
@@ -48,12 +48,12 @@ def solution(dimensions, your_position, trainer_position, distance):
     x_start, y_start = your_position
     x_end, y_end = trainer_position
 
-    dX, dY = (axis_movement(x_start, x_start, w, distance),
-              axis_movement(y_start, y_start, h, distance))
+    dX = get_axis_moves(x_start, x_start, w, distance)
+    dY = get_axis_moves(y_start, y_start, h, distance)
     exclusions = generate_directions(dX, dY, distance)
 
-    dX, dY = (axis_movement(x_start, x_end, w, distance),
-              axis_movement(y_start, y_end, h, distance))
+    dX = get_axis_moves(x_start, x_end, w, distance)
+    dY = get_axis_moves(y_start, y_end, h, distance)
     directions = generate_directions(dX, dY, distance, exclusions)
 
     return len(directions)
