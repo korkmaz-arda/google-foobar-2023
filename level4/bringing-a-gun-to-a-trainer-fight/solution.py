@@ -3,6 +3,11 @@ from itertools import product
 
 
 def get_axis_moves(start, end, interval, max_dist):
+    """
+    Calculate directed movements between start and end points over a single axis
+    interval for each lap (i.e. bounce) in the axis until a maximum distance is 
+    reached in two opposite directions. (left & right or up & down)
+    """
     moves = [end - start]
     
     for lap in range(1, max_dist//interval+2):
@@ -21,9 +26,16 @@ def get_axis_moves(start, end, interval, max_dist):
 
 def generate_directions(dX, dY, max_dist, exclusions=None):
     """
-    Calculate directed movements between start and end points over a single axis
-    interval for each lap (i.e. bounce) in the axis until a maximum distance is 
-    reached in two opposite directions. (left & right or up & down)
+    Find combinations of x and y axis moves that:
+        a) aren't longer than the maximum distance 
+        
+        b) aren't in the exclusions list (doesn't hit self)
+                or
+           ends before reaching the distance given in exclusions (hits trainer before hits self)
+
+    Simplify the combinations via division by the greatest common divisor and find a direction.
+
+    Keep unique directions and the distance it takes to reach them in 'directions' dict.
     """
     directions = {}
     
@@ -49,18 +61,6 @@ def generate_directions(dX, dY, max_dist, exclusions=None):
 
 
 def solution(dimensions, your_position, trainer_position, distance):
-    """
-    Find combinations of x and y axis moves that:
-        a) aren't longer than the maximum distance 
-        
-        b) aren't in the exclusions list (doesn't hit self)
-                or
-           ends before reaching the distance given in exclusions (hits trainer before hits self)
-
-    Simplify the combinations via division by the greatest common divisor and find a direction.
-
-    Keep unique directions and the distance it takes to reach them in 'directions' dict.
-    """
     w, h = dimensions
     x_start, y_start = your_position
     x_end, y_end = trainer_position
