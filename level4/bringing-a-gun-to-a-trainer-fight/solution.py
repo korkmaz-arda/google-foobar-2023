@@ -14,10 +14,10 @@ def get_axis_moves(start, end, interval, max_dist):
         laps = lap * interval
         if lap % 2 == 0:
             move = laps + (end - start)
-            opposite_move = -laps - (start - end)
         else:
             move = laps - (end + start) + interval
-            opposite_move = -laps - (end + start) + interval
+        
+        opposite_move = move - 2 * laps
 
         moves.extend([move, opposite_move])
     
