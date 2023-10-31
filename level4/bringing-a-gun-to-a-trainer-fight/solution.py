@@ -5,7 +5,7 @@ from itertools import product
 def get_axis_moves(start, end, interval, max_dist):
     """
     Calculate directed movements between start and end points over a single axis
-    interval for each lap (i.e. bounce) in the axis until a maximum distance is 
+    interval for each lap (i.e. bounce) on the axis until a maximum distance is 
     reached in two opposite directions. (left & right or up & down)
     """
     moves = [end - start]
